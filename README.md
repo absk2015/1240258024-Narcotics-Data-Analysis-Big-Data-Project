@@ -1,14 +1,32 @@
-# Narcotics Data Analysis using Hadoop Big Data Project
+# 📊 Narcotics Data Analysis using Hadoop Big Data Project
 
-## 📌 Problem Statement
-
-The objective of this project is to analyze narcotics-related crime data across different states and drug types using Hadoop MapReduce. The goal is to identify patterns, high-risk regions, and frequently occurring drug cases.
+![Hadoop](https://img.shields.io/badge/Big%20Data-Hadoop-yellow)
+![Python](https://img.shields.io/badge/Language-Python-blue)
+![Hive](https://img.shields.io/badge/Query-Hive-orange)
+![Status](https://img.shields.io/badge/Project-Academic-success)
 
 ---
 
-## 📊 Dataset Description
+## 📌 Overview
 
-The dataset contains narcotics crime records with the following attributes:
+This project analyzes narcotics crime data using the Hadoop MapReduce framework. It processes large-scale datasets to extract meaningful insights such as total cases by drug type and state.
+
+The system uses HDFS for storage and MapReduce for distributed data processing.
+
+---
+
+## 🎯 Objectives
+
+* Analyze narcotics-related crime data
+* Identify drug-wise and state-wise trends
+* Perform distributed data processing using Hadoop
+* Generate aggregated insights from raw data
+
+---
+
+## 📁 Dataset
+
+The dataset contains records of narcotics-related cases with the following attributes:
 
 * Year
 * State
@@ -17,11 +35,44 @@ The dataset contains narcotics crime records with the following attributes:
 * Quantity Seized (kg)
 * Number of Arrests
 
-The dataset is provided in CSV format and is processed using Hadoop.
+The dataset is stored in CSV format and uploaded to HDFS for processing.
 
 ---
 
-## ⚙️ Technologies Used
+## 🏗️ Project Architecture
+
+The project is based on the Hadoop ecosystem:
+
+* **HDFS** – Storage layer
+* **MapReduce** – Data processing layer
+* **Hive** – Query and analysis layer
+
+---
+
+## 🔄 Data Flow
+
+Raw Data → HDFS → Mapper → Reducer → Output → Hive Analysis
+
+---
+
+## ⚙️ Implementation
+
+### 🧩 Mapper
+
+* Reads input data
+* Emits key-value pairs such as:
+
+  * (Drug Type, Cases)
+  * (State, Cases)
+
+### 🔗 Reducer
+
+* Receives grouped data from mapper
+* Aggregates values to compute totals
+
+---
+
+## 🛠️ Technologies Used
 
 * Hadoop (HDFS, MapReduce)
 * Hive
@@ -30,30 +81,39 @@ The dataset is provided in CSV format and is processed using Hadoop.
 
 ---
 
-## 🚀 Steps to Run
+## 🚀 Steps to Execute
 
-1. Start Hadoop services
-2. Upload dataset to HDFS
-3. Run Mapper script
-4. Run Reducer script
-5. Retrieve output from HDFS
+```bash
+# Start Hadoop services
+start-dfs.sh
+start-yarn.sh
+
+# Upload dataset to HDFS
+hdfs dfs -put dataset.csv /input
+
+# Run MapReduce job
+hadoop jar your-job.jar Mapper Reducer /input /output
+
+# View output
+hdfs dfs -cat /output/part-00000
+```
 
 ---
 
 ## 📈 Sample Output
 
-Drug-wise aggregation:
+**Drug-wise Results:**
 Cannabis 2680
 Cocaine 905
 Heroin 1230
 
-State-wise aggregation:
+**State-wise Results:**
 Uttar Pradesh 2100
 Maharashtra 1850
 
 ---
 
-## 🧠 Hive Queries (For Analysis)
+## 🧠 Hive Queries
 
 ```sql
 SELECT drug_type, SUM(cases)
@@ -67,9 +127,9 @@ GROUP BY state;
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
-```
+```bash
 ├── Project-Report.pdf
 ├── Mapper.py
 ├── Reducer.py
@@ -79,14 +139,26 @@ GROUP BY state;
 
 ---
 
-## ✅ Key Features
+## 🚀 Future Improvements
 
-* Distributed data processing using Hadoop
-* Drug-wise and state-wise aggregation
-* Scalable and efficient analysis of large datasets
+* Add real-time data processing using Spark
+* Build visualization dashboards
+* Integrate machine learning for prediction
+
+---
+
+## 👨‍💻 Author
+
+Abhishek Ray  
+
+---
+
+## ✅ Conclusion
+
+This project demonstrates how Hadoop MapReduce can be used for large-scale data analysis. It efficiently processes narcotics data and generates useful insights using distributed computing.
 
 ---
 
 ## ⚠️ Note
 
-This project is developed for academic purposes. The implementation is based on Hadoop MapReduce and requires understanding of the underlying logic for proper execution and evaluation.
+This project is developed for academic purposes. Understanding the Mapper and Reducer logic is essential, as it may be evaluated during viva.
