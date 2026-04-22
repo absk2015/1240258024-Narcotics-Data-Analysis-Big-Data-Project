@@ -1,185 +1,92 @@
-# 💊 Narcotics Data Analysis using Hadoop
+# Narcotics Data Analysis using Hadoop Big Data Project
 
-**Big Data Fundamentals Project**  
-*Implemented using Hadoop Ecosystem (HDFS, MapReduce, Hive)*
+## 📌 Problem Statement
 
----
-
-## 📌 Project Overview
-
-This project demonstrates a **complete Big Data processing pipeline** to analyze narcotics seizure data across Indian states using the Hadoop ecosystem.
-
-Drug trafficking is one of India's most pressing law enforcement challenges. Traditional systems struggle to process and analyze large volumes of narcotics data efficiently.
-
-This project solves that problem using **distributed computing techniques** to extract meaningful insights such as:
-
-* Total cases registered per drug type
-* High-risk states with maximum narcotics activity
-* Year-wise trends in drug seizures
+The objective of this project is to analyze narcotics-related crime data across different states and drug types using Hadoop MapReduce. The goal is to identify patterns, high-risk regions, and frequently occurring drug cases.
 
 ---
 
-## 🎯 Objectives
+## 📊 Dataset Description
 
-* To store large datasets using **HDFS**
-* To process data using **MapReduce (Python)**
-* To perform analytical queries using **Hive**
-* To understand distributed data processing
-* To generate insights from raw narcotics data
+The dataset contains narcotics crime records with the following attributes:
 
----
+* Year
+* State
+* Drug Type
+* Number of Cases
+* Quantity Seized (kg)
+* Number of Arrests
 
-## 🏗️ Architecture
-
-```
-Raw CSV Dataset
-        ↓
-HDFS (Storage Layer)
-        ↓
-MapReduce (Processing Layer)
-        ↓
-Processed Output (HDFS)
-        ↓
-Hive (Analysis Layer)
-        ↓
-Insights (Top Drug Types & States)
-```
+The dataset is provided in CSV format and is processed using Hadoop.
 
 ---
 
-## ⚙️ Technologies & Tools Used
+## ⚙️ Technologies Used
 
-* HDFS (Storage Layer)
-* MapReduce (Data Processing)
-* Hive (Data Analysis)
-* Python 3
-* Linux / Cloudera
-* ChatGPT (Generative AI Assistance)
+* Hadoop (HDFS, MapReduce)
+* Hive
+* Python
+* Linux
 
 ---
 
-## 📊 Dataset Information
+## 🚀 Steps to Run
 
-The dataset contains narcotics seizure records across 5 Indian states from 2018–2023.
-
-### 📌 Key Attributes:
-
-| Column | Description |
-|--------|-------------|
-| Year | Year of the narcotics case |
-| State | Indian state (UP, Maharashtra, Punjab, Rajasthan, Delhi) |
-| Drug_Type | Type of narcotic (Heroin, Cocaine, Opium, Cannabis, Methamphetamine) |
-| Cases | Number of cases registered |
-| Quantity_kg | Quantity seized (in kilograms) |
-| Arrests | Number of arrests made |
-
----
-
-## 🔄 Workflow Explanation
-
-* The dataset is stored in HDFS for distributed storage
-* MAPPER_CODE.py processes each row and emits drug_type and state as keys
-* REDUCER_CODE.py aggregates total cases per drug type and per state
-* Processed output is stored back in HDFS
-* Hive is used to query and analyze the aggregated results
-
----
-
-## ▶️ Steps to Run
-
-### 1. Start Hadoop Services
-```bash
-start-dfs.sh
-start-yarn.sh
-```
-
-### 2. Upload Dataset to HDFS
-```bash
-hdfs dfs -mkdir /narcotics
-hdfs dfs -put NARCOTICS_DATASET.csv /narcotics/
-```
-
-### 3. Run MapReduce Job
-```bash
-hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
-  -input /narcotics/NARCOTICS_DATASET.csv \
-  -output /narcotics/output \
-  -mapper MAPPER_CODE.py \
-  -reducer REDUCER_CODE.py \
-  -file MAPPER_CODE.py \
-  -file REDUCER_CODE.py
-```
-
-### 4. View Output
-```bash
-hdfs dfs -cat /narcotics/output/part-00000
-```
+1. Start Hadoop services
+2. Upload dataset to HDFS
+3. Run Mapper script
+4. Run Reducer script
+5. Retrieve output from HDFS
 
 ---
 
 ## 📈 Sample Output
 
+Drug-wise aggregation:
+Cannabis 2680
+Cocaine 905
+Heroin 1230
+
+State-wise aggregation:
+Uttar Pradesh 2100
+Maharashtra 1850
+
+---
+
+## 🧠 Hive Queries (For Analysis)
+
+```sql
+SELECT drug_type, SUM(cases)
+FROM narcotics
+GROUP BY drug_type;
+
+SELECT state, SUM(cases)
+FROM narcotics
+GROUP BY state;
 ```
-Cannabis            2680
-Cocaine              905
-Delhi               1985
-Heroin              1955
-Maharashtra         2010
-Methamphetamine     1260
-Opium               3130
-Punjab              2645
-Rajasthan           2710
-Uttar Pradesh       2275
+
+---
+
+## 📁 Project Structure
+
+```
+├── Project-Report.pdf
+├── Mapper.py
+├── Reducer.py
+├── dataset.csv
+├── README.md
 ```
 
 ---
 
-## 🤖 Use of Generative AI
+## ✅ Key Features
 
-Generative AI (ChatGPT) played an important role in this project:
-
-* Code generation (Mapper & Reducer)
-* Debugging support
-* Hive query assistance
-* Concept understanding of Big Data tools
+* Distributed data processing using Hadoop
+* Drug-wise and state-wise aggregation
+* Scalable and efficient analysis of large datasets
 
 ---
 
-## 🔐 Validation
+## ⚠️ Note
 
-All generated code and outputs were:
-
-* Manually tested
-* Verified for correctness
-* Successfully executed in the Hadoop environment
-
----
-
-## 🌟 Key Features
-
-* Scalable Big Data processing
-* Efficient handling of large narcotics datasets
-* Distributed computing approach
-* Dual-key Mapper (drug type + state in one job)
-* Integration of AI for enhanced productivity
-
----
-
-## 🎯 Conclusion
-
-This project successfully demonstrates how the Hadoop ecosystem can be used to process and analyze large-scale narcotics data efficiently.
-
-By combining **HDFS, MapReduce, and Hive**, the system transforms raw seizure data into meaningful insights, enabling better decision-making in law enforcement and policy planning.
-
----
-
-## 👨‍💻 Author
-
-**Abhishek Ray**  
-🏫 Babu Banarasi Das University, Lucknow  
-
----
-
-## ⭐ Final Note
-
-This project reflects a real-world Big Data solution where distributed computing is essential for handling large-scale law enforcement data efficiently.
+This project is developed for academic purposes. The implementation is based on Hadoop MapReduce and requires understanding of the underlying logic for proper execution and evaluation.
