@@ -176,7 +176,6 @@ By combining **HDFS, MapReduce, and Hive**, the system transforms raw seizure da
 ## 👨‍💻 Author
 
 **Abhishek Ray**  
-🎓 BCA – Big Data Fundamentals  
 🏫 Babu Banarasi Das University, Lucknow  
 🪪 Student ID: 1240258024
 
