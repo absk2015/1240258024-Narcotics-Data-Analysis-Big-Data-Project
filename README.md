@@ -81,35 +81,52 @@ Raw Data → HDFS → Mapper → Reducer → Output → Hive Analysis
 
 ---
 
-## 🚀 Steps to Execute
+## ▶️ Steps to Run
 
+### 1. Start Hadoop Services
 ```bash
-# Start Hadoop services
 start-dfs.sh
 start-yarn.sh
+```
 
-# Upload dataset to HDFS
-hdfs dfs -put dataset.csv /input
+### 2. Upload Dataset to HDFS
+```bash
+hdfs dfs -mkdir /narcotics
+hdfs dfs -put NARCOTICS_DATASET.csv /narcotics/
+```
 
-# Run MapReduce job
-hadoop jar your-job.jar Mapper Reducer /input /output
+### 3. Run MapReduce Job
+```bash
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
+  -input /narcotics/NARCOTICS_DATASET.csv \
+  -output /narcotics/output \
+  -mapper MAPPER_CODE.py \
+  -reducer REDUCER_CODE.py \
+  -file MAPPER_CODE.py \
+  -file REDUCER_CODE.py
+```
 
-# View output
-hdfs dfs -cat /output/part-00000
+### 4. View Output
+```bash
+hdfs dfs -cat /narcotics/output/part-00000
 ```
 
 ---
 
 ## 📈 Sample Output
 
-**Drug-wise Results:**
-Cannabis 2680
-Cocaine 905
-Heroin 1230
-
-**State-wise Results:**
-Uttar Pradesh 2100
-Maharashtra 1850
+```
+Cannabis            2680
+Cocaine              905
+Delhi               1985
+Heroin              1955
+Maharashtra         2010
+Methamphetamine     1260
+Opium               3130
+Punjab              2645
+Rajasthan           2710
+Uttar Pradesh       2275
+```
 
 ---
 
