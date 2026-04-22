@@ -177,7 +177,6 @@ By combining **HDFS, MapReduce, and Hive**, the system transforms raw seizure da
 
 **Abhishek Ray**  
 🏫 Babu Banarasi Das University, Lucknow  
-🪪 Student ID: 1240258024
 
 ---
 
