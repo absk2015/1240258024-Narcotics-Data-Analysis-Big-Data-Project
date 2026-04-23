@@ -5,177 +5,62 @@
 ![Hive](https://img.shields.io/badge/Query-Hive-orange)
 ![Status](https://img.shields.io/badge/Project-Academic-success)
 
----
+## Problem Statement
+Drug trafficking is a major law enforcement challenge in India. This project processes narcotics seizure data across Indian states using Hadoop MapReduce to identify the most prevalent drug types and highest-risk states.
 
-## 📌 Overview
+## Dataset Description
+File: dataset.csv  
+Format: CSV  
+Columns: Year, State, Drug_Type, Cases, Quantity_kg, Arrests  
+Records: 30 rows covering 5 states and 5 drug types from 2018 to 2023.
 
-This project analyzes narcotics crime data using the Hadoop MapReduce framework. It processes large-scale datasets to extract meaningful insights such as total cases by drug type and state.
+## Steps to Run
 
-The system uses HDFS for storage and MapReduce for distributed data processing.
-
----
-
-## 🎯 Objectives
-
-* Analyze narcotics-related crime data
-* Identify drug-wise and state-wise trends
-* Perform distributed data processing using Hadoop
-* Generate aggregated insights from raw data
-
----
-
-## 📁 Dataset
-
-The dataset contains records of narcotics-related cases with the following attributes:
-
-* Year
-* State
-* Drug Type
-* Number of Cases
-* Quantity Seized (kg)
-* Number of Arrests
-
-The dataset is stored in CSV format and uploaded to HDFS for processing.
-
----
-
-## 🏗️ Project Architecture
-
-The project is based on the Hadoop ecosystem:
-
-* **HDFS** – Storage layer
-* **MapReduce** – Data processing layer
-* **Hive** – Query and analysis layer
-
----
-
-## 🔄 Data Flow
-
-Raw Data → HDFS → Mapper → Reducer → Output → Hive Analysis
-
----
-
-## ⚙️ Implementation
-
-### 🧩 Mapper
-
-* Reads input data
-* Emits key-value pairs such as:
-
-  * (Drug Type, Cases)
-  * (State, Cases)
-
-### 🔗 Reducer
-
-* Receives grouped data from mapper
-* Aggregates values to compute totals
-
----
-
-## 🛠️ Technologies Used
-
-* Hadoop (HDFS, MapReduce)
-* Hive
-* Python
-* Linux
-
----
-
-## ▶️ Steps to Run
-
-### 1. Start Hadoop Services
-```bash
+1. Start Hadoop services:
+```
 start-dfs.sh
 start-yarn.sh
 ```
 
-### 2. Upload Dataset to HDFS
-```bash
+2. Upload dataset to HDFS:
+```
 hdfs dfs -mkdir /narcotics
-hdfs dfs -put NARCOTICS_DATASET.csv /narcotics/
+hdfs dfs -put dataset.csv /narcotics/
 ```
 
-### 3. Run MapReduce Job
-```bash
+3. Run MapReduce job:
+```
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
-  -input /narcotics/NARCOTICS_DATASET.csv \
+  -input /narcotics/dataset.csv \
   -output /narcotics/output \
-  -mapper MAPPER_CODE.py \
-  -reducer REDUCER_CODE.py \
-  -file MAPPER_CODE.py \
-  -file REDUCER_CODE.py
+  -mapper Mapper.py \
+  -reducer Reducer.py \
+  -file Mapper.py \
+  -file Reducer.py
 ```
 
-### 4. View Output
-```bash
+4. View output:
+```
 hdfs dfs -cat /narcotics/output/part-00000
 ```
 
----
-
-## 📈 Sample Output
-
+## Sample Output
 ```
-Cannabis            2680
-Cocaine              905
-Delhi               1985
-Heroin              1955
-Maharashtra         2010
-Methamphetamine     1260
-Opium               3130
-Punjab              2645
-Rajasthan           2710
-Uttar Pradesh       2275
+Cannabis        2680
+Cocaine          905
+Delhi           1985
+Heroin          1955
+Maharashtra     2010
+Methamphetamine 1260
+Opium           3130
+Punjab          2645
+Rajasthan       2710
+Uttar Pradesh   2275
 ```
 
----
-
-## 🧠 Hive Queries
-
-```sql
-SELECT drug_type, SUM(cases)
-FROM narcotics
-GROUP BY drug_type;
-
-SELECT state, SUM(cases)
-FROM narcotics
-GROUP BY state;
-```
-
----
-
-## 📂 Project Structure
-
-```bash
-├── Project-Report.pdf
-├── Mapper.py
-├── Reducer.py
-├── dataset.csv
-├── README.md
-```
-
----
-
-## 🚀 Future Improvements
-
-* Add real-time data processing using Spark
-* Build visualization dashboards
-* Integrate machine learning for prediction
-
----
-
-## 👨‍💻 Author
-
-Abhishek Ray  
-
----
-
-## ✅ Conclusion
-
-This project demonstrates how Hadoop MapReduce can be used for large-scale data analysis. It efficiently processes narcotics data and generates useful insights using distributed computing.
-
----
-
-## ⚠️ Note
-
-This project is developed for academic purposes. Understanding the Mapper and Reducer logic is essential, as it may be evaluated during viva.
+## Technologies Used
+- Hadoop (HDFS, MapReduce)
+- Hive
+- Python
+- Linux
+- Cloudera
