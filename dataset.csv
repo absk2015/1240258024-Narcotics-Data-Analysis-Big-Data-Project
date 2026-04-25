@@ -1,0 +1,31 @@
+Year,State,Drug_Type,Cases,Quantity_kg,Arrests
+2018,Uttar Pradesh,Heroin,320,45.5,410
+2018,Maharashtra,Cocaine,150,12.3,180
+2018,Punjab,Opium,540,120.0,620
+2018,Rajasthan,Cannabis,430,98.7,500
+2018,Delhi,Methamphetamine,210,18.4,260
+2019,Uttar Pradesh,Cannabis,490,110.2,570
+2019,Maharashtra,Heroin,280,38.9,340
+2019,Punjab,Methamphetamine,175,15.6,210
+2019,Rajasthan,Opium,610,135.0,700
+2019,Delhi,Cocaine,130,10.5,160
+2020,Uttar Pradesh,Opium,560,128.4,640
+2020,Maharashtra,Cannabis,370,85.3,450
+2020,Punjab,Heroin,410,60.1,490
+2020,Rajasthan,Methamphetamine,195,17.2,240
+2020,Delhi,Cannabis,310,70.6,380
+2021,Uttar Pradesh,Cocaine,165,14.0,200
+2021,Maharashtra,Opium,480,105.5,560
+2021,Punjab,Cannabis,520,118.9,600
+2021,Rajasthan,Heroin,295,42.3,360
+2021,Delhi,Opium,350,80.0,420
+2022,Uttar Pradesh,Methamphetamine,230,20.1,280
+2022,Maharashtra,Methamphetamine,200,17.8,245
+2022,Punjab,Cocaine,140,11.2,170
+2022,Rajasthan,Cannabis,460,104.5,530
+2022,Delhi,Heroin,340,50.7,415
+2023,Uttar Pradesh,Cannabis,510,115.0,590
+2023,Maharashtra,Heroin,310,44.6,375
+2023,Punjab,Opium,590,130.2,670
+2023,Rajasthan,Cocaine,120,9.8,150
+2023,Delhi,Methamphetamine,250,22.3,305
