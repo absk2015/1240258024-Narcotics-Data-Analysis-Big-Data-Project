@@ -1,35 +1,81 @@
-# 📊 Narcotics Data Analysis using Hadoop Big Data Project
+<div align="center">
 
-![Hadoop](https://img.shields.io/badge/Big%20Data-Hadoop-yellow)
-![Python](https://img.shields.io/badge/Language-Python-blue)
-![Hive](https://img.shields.io/badge/Query-Hive-orange)
-![Status](https://img.shields.io/badge/Project-Academic-success)
+# 🚨 Narcotics Data Analysis
+### Big Data Processing using Hadoop MapReduce
 
-## Problem Statement
-Drug trafficking is a major law enforcement challenge in India. This project processes narcotics seizure data across Indian states using Hadoop MapReduce to identify the most prevalent drug types and highest-risk states.
+![Hadoop](https://img.shields.io/badge/Hadoop-MapReduce-66CCFF?style=for-the-badge&logo=apache&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Hive](https://img.shields.io/badge/Apache-Hive-FDEE21?style=for-the-badge&logo=apache&logoColor=black)
+![Linux](https://img.shields.io/badge/Linux-Cloudera-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
-## Dataset Description
-File: dataset.csv  
-Format: CSV  
-Columns: Year, State, Drug_Type, Cases, Quantity_kg, Arrests  
-Records: 30 rows covering 5 states and 5 drug types from 2018 to 2023.
+*Babu Banarasi Das University — Big Data Fundamentals*
 
-## Steps to Run
+</div>
 
-1. Start Hadoop services:
+---
+
+## 📌 Problem Statement
+
+Drug trafficking is a major law enforcement challenge in India. Traditional databases cannot efficiently process large-scale narcotics seizure records. This project uses **Hadoop MapReduce** to analyze seizure data across Indian states — identifying the most prevalent drug types and highest-risk regions.
+
+---
+
+## 📂 Repository Structure
+
 ```
+📦 1240258024-Narcotics-Data-Analysis-Big-Data-Project
+ ┣ 📄 Project-Report.pdf
+ ┣ 🐍 Mapper.py
+ ┣ 🐍 Reducer.py
+ ┣ 📊 dataset.csv
+ ┗ 📘 README.md
+```
+
+---
+
+## 📊 Dataset Description
+
+| Column | Description |
+|---|---|
+| `Year` | Year of the narcotics case (2018–2023) |
+| `State` | Indian state where case was registered |
+| `Drug_Type` | Type of narcotic (Heroin, Cocaine, Opium, Cannabis, Methamphetamine) |
+| `Cases` | Number of cases registered |
+| `Quantity_kg` | Quantity seized in kilograms |
+| `Arrests` | Number of arrests made |
+
+> 30 records · 5 states · 5 drug types · 6 years (2018–2023)
+
+---
+
+## ⚙️ How It Works
+
+```
+dataset.csv  ──▶  HDFS  ──▶  Mapper.py  ──▶  Reducer.py  ──▶  Hive  ──▶  Insights
+```
+
+- **Mapper** reads each CSV row and emits two key-value pairs: `Drug_Type → Cases` and `State → Cases`
+- **Reducer** aggregates total cases per key across all rows
+- **Hive** enables SQL-style querying on the final output
+
+---
+
+## 🚀 Steps to Run
+
+**1. Start Hadoop**
+```bash
 start-dfs.sh
 start-yarn.sh
 ```
 
-2. Upload dataset to HDFS:
-```
+**2. Upload dataset to HDFS**
+```bash
 hdfs dfs -mkdir /narcotics
 hdfs dfs -put dataset.csv /narcotics/
 ```
 
-3. Run MapReduce job:
-```
+**3. Run MapReduce job**
+```bash
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
   -input /narcotics/dataset.csv \
   -output /narcotics/output \
@@ -39,28 +85,45 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
   -file Reducer.py
 ```
 
-4. View output:
-```
+**4. View results**
+```bash
 hdfs dfs -cat /narcotics/output/part-00000
 ```
 
-## Sample Output
+---
+
+## 📈 Sample Output
+
 ```
-Cannabis        2680
-Cocaine          905
-Delhi           1985
-Heroin          1955
-Maharashtra     2010
-Methamphetamine 1260
-Opium           3130
-Punjab          2645
-Rajasthan       2710
-Uttar Pradesh   2275
+Cannabis          2680
+Cocaine            905
+Delhi             1985
+Heroin            1955
+Maharashtra       2010
+Methamphetamine   1260
+Opium             3130
+Punjab            2645
+Rajasthan         2710
+Uttar Pradesh     2275
 ```
 
-## Technologies Used
-- Hadoop (HDFS, MapReduce)
-- Hive
-- Python
-- Linux
-- Cloudera
+---
+
+## 🛠️ Technologies Used
+
+| Tool | Purpose |
+|---|---|
+| Hadoop HDFS | Distributed storage |
+| MapReduce | Data processing |
+| Apache Hive | Query & analysis |
+| Python 3 | Mapper & Reducer scripts |
+| Cloudera | Hadoop distribution |
+| Linux | Execution environment |
+
+---
+
+<div align="center">
+
+**Abhishek Ray** · `1240258024` · Big Data Fundamentals · BBDU Lucknow
+
+</div>
